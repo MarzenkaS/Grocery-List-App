@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery List App</title>
+</head>
+
+<body>
+    <h1>Grocery List App</h1>
+
+    <div>
+        <input id="itemInput" placeholder="Add item...">
+        <button id="addItemBtn">Add</button>
+    </div>
+
+    <div>
+        <ol id="shoppingList"></ol>
+    </div>
+
+
+    <script>
+
+        const button = document.getElementById("addItemBtn") // get Add button
+        const itemInput = document.getElementById("itemInput") //get input field
+        const shoppingList = document.getElementById("shoppingList") // get list (ol)
+        button.addEventListener("click", function () { // run code on button click
+            const value = itemInput.value // get text from input
+            if (value === "") return // stop if input is empty
+            itemInput.value = "" // clear input field
+
+
+            const li = document.createElement("li") // create new list item
+            li.textContent = value + " " // add text to li (with space)
+            shoppingList.appendChild(li) // add li to the list
+
+
+            const deleteBtn = document.createElement("button") // create delete button
+            deleteBtn.textContent = "Delete" // set button text
+            deleteBtn.addEventListener("click", function () { // run on delete click
+                shoppingList.removeChild(li); // remove this li from list
+            });
+            li.appendChild(deleteBtn) // add button inside li
+
+        })
+
+    </script>
+
+</body>
+
+</html>
